@@ -27,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Date: 7/13/16 Time: 6:57 PM
  */
-public class TwistedStarterBaseIntegration extends AbstractGameIntegration<TSBGame, TSBMaskedGame> {
+public class TwistedMazesIntegration extends AbstractGameIntegration<TSBGame, TSBMaskedGame> {
 
     private static HazelcastCacheManager cacheManager;
     private static GameRepository gameRepository;
