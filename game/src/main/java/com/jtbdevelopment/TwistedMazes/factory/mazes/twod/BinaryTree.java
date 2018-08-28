@@ -25,7 +25,7 @@ public class BinaryTree {
         .collect(Collectors.toList());
       if (neighbors.size() > 0) {
         if (neighbors.size() > 1) {
-          cell.linkCell(neighbors.get(random.nextInt(neighbors.size()));
+          cell.linkCell(neighbors.get(random.nextInt(neighbors.size())));
         } else {
           cell.linkCell(neighbors.get(0));
         }
