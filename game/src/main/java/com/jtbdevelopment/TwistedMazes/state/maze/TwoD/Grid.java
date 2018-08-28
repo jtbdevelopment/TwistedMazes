@@ -63,4 +63,26 @@ public class Grid {
     return IntStream.range(0, rows).mapToObj(row -> Arrays.asList(cells[row]));
   }
 
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder("+");
+    for (int col = 0; col < cols; ++col) {
+      builder.append("---+");
+    }
+    builder.append(System.lineSeparator());
+
+    streamRows().forEach(row -> {
+      StringBuilder top = new StringBuilder("|");
+      StringBuilder bottom = new StringBuilder("+");
+      row.forEach(cell -> {
+        top.append("   ");
+        top.append(cell.isLinked(cell.getEast()) ? " " : "|");
+        bottom.append(cell.isLinked(cell.getSouth()) ? "   " : "---");
+        bottom.append("+");
+      });
+      builder.append(top).append(System.lineSeparator());
+      builder.append(bottom).append(System.lineSeparator());
+    });
+    return builder.toString();
+  }
 }
