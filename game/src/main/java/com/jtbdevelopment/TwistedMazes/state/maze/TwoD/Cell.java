@@ -11,13 +11,13 @@ import java.util.Set;
  */
 public class Cell {
   private final int row;
-  private final int cell;
+  private final int col;
   private Cell north, east, south, west;
   private Set<Cell> linkedCells = new HashSet<>();
 
-  public Cell(int row, int cell) {
+  public Cell(int row, int col) {
     this.row = row;
-    this.cell = cell;
+    this.col = col;
   }
 
   public Set<Cell> getLinkedCells() {
@@ -38,12 +38,16 @@ public class Cell {
 
   private void linkCell(final Cell cell, final boolean bi) {
     linkedCells.add(cell);
-    cell.linkCell(this, false);
+    if (bi) {
+      cell.linkCell(this, false);
+    }
   }
 
   private void unlinkCell(final Cell cell, final boolean bi) {
     linkedCells.add(cell);
-    cell.unlinkCell(this, false);
+    if (bi) {
+      cell.unlinkCell(this, false);
+    }
   }
 
   public Cell getNorth() {
@@ -78,18 +82,26 @@ public class Cell {
     this.west = west;
   }
 
+  public int getRow() {
+    return row;
+  }
+
+  public int getCol() {
+    return col;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof Cell)) return false;
     Cell cell1 = (Cell) o;
     return row == cell1.row &&
-      cell == cell1.cell;
+      col == cell1.col;
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(row, cell);
+    return Objects.hash(row, col);
   }
 }
