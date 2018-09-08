@@ -16,6 +16,12 @@ public class Grid {
   private int rows;
   private int cols;
 
+  public Grid(final Grid copy) {
+    this.rows = copy.rows;
+    this.cols = copy.cols;
+    this.cells = copy.cells;
+  }
+
   public Grid(final int rows, final int cols) {
     this.rows = rows;
     this.cols = cols;
@@ -71,6 +77,10 @@ public class Grid {
     return cols;
   }
 
+  protected String cellContent(final Cell cell) {
+    return "   ";
+  }
+
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder("+");
@@ -83,7 +93,7 @@ public class Grid {
       StringBuilder top = new StringBuilder("|");
       StringBuilder bottom = new StringBuilder("+");
       row.forEach(cell -> {
-        top.append("   ");
+        top.append(cellContent(cell));
         top.append(cell.isLinked(cell.getEast()) ? " " : "|");
         bottom.append(cell.isLinked(cell.getSouth()) ? "   " : "---");
         bottom.append("+");

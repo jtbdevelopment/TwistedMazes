@@ -2,10 +2,12 @@ package com.jtbdevelopment.TwistedMazes.state.maze.twod;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import org.springframework.stereotype.Component;
 
 /**
  * Date: 9/6/18 Time: 6:43 PM
  */
+@Component
 public class DijkstraDistancesCalculator {
 
   public Distances computeDistances(final Cell root) {
