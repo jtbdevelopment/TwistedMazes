@@ -7,10 +7,10 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * Date: 8/27/18
- * Time: 9:48 AM
+ * Date: 8/27/18 Time: 9:48 AM
  */
 public class Grid {
+
   private static final Random random = new Random();
   private final Cell[][] cells;
   private int rows;
@@ -55,12 +55,20 @@ public class Grid {
 
   public Stream<Cell> stream() {
     return IntStream.range(0, rows)
-      .boxed()
-      .flatMap(row -> IntStream.range(0, cols).mapToObj(col -> getCell(row, col)));
+        .boxed()
+        .flatMap(row -> IntStream.range(0, cols).mapToObj(col -> getCell(row, col)));
   }
 
   public Stream<List<Cell>> streamRows() {
     return IntStream.range(0, rows).mapToObj(row -> Arrays.asList(cells[row]));
+  }
+
+  public int getRows() {
+    return rows;
+  }
+
+  public int getCols() {
+    return cols;
   }
 
   @Override

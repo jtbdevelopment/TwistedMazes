@@ -10,23 +10,23 @@ import org.springframework.data.annotation.Transient;
  */
 public class TSBPlayerAttributes extends AbstractPlayerGameTrackingAttributes {
 
-    private static final int DEFAULT_FREE_GAMES_PER_DAY = 50;
-    private static final int DEFAULT_PREMIUM_PLAYER_GAMES_PER_DAY = 100;
-    @Transient
-    private int maxDailyFreeGames;
+  private static final int DEFAULT_FREE_GAMES_PER_DAY = 50;
+  private static final int DEFAULT_PREMIUM_PLAYER_GAMES_PER_DAY = 100;
+  @Transient
+  private int maxDailyFreeGames;
 
-    @Override
-    public void setPlayer(final Player player) {
-        super.setPlayer(player);
-        maxDailyFreeGames = (player.getPayLevel().equals(PlayerPayLevel.FreeToPlay)
-                ? DEFAULT_FREE_GAMES_PER_DAY : DEFAULT_PREMIUM_PLAYER_GAMES_PER_DAY);
-    }
+  @Override
+  public void setPlayer(final Player player) {
+    super.setPlayer(player);
+    maxDailyFreeGames = (player.getPayLevel().equals(PlayerPayLevel.FreeToPlay)
+        ? DEFAULT_FREE_GAMES_PER_DAY : DEFAULT_PREMIUM_PLAYER_GAMES_PER_DAY);
+  }
 
-    public int getMaxDailyFreeGames() {
-        return maxDailyFreeGames;
-    }
+  public int getMaxDailyFreeGames() {
+    return maxDailyFreeGames;
+  }
 
-    public void setMaxDailyFreeGames(int maxDailyFreeGames) {
-        this.maxDailyFreeGames = maxDailyFreeGames;
-    }
+  public void setMaxDailyFreeGames(int maxDailyFreeGames) {
+    this.maxDailyFreeGames = maxDailyFreeGames;
+  }
 }

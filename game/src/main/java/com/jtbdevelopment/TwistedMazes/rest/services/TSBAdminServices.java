@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("unused")
 @Component
 public class TSBAdminServices extends
-        AbstractAdminServices<ObjectId, GameFeature, TSBGame, MongoPlayer> {
+    AbstractAdminServices<ObjectId, GameFeature, TSBGame, MongoPlayer> {
 
-    public TSBAdminServices(
-            final AbstractPlayerRepository<ObjectId, MongoPlayer> playerRepository,
-            final AbstractGameRepository<ObjectId, GameFeature, TSBGame> gameRepository,
-            final StringToIDConverter<ObjectId> stringToIDConverter) {
-        super(playerRepository, gameRepository, stringToIDConverter);
-    }
+  public TSBAdminServices(
+      final AbstractPlayerRepository<ObjectId, MongoPlayer> playerRepository,
+      final AbstractGameRepository<ObjectId, GameFeature, TSBGame> gameRepository,
+      final StringToIDConverter<ObjectId> stringToIDConverter) {
+    super(playerRepository, gameRepository, stringToIDConverter);
+  }
 }

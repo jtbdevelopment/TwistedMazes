@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TSBJacksonRegistration implements JacksonModuleCustomization {
 
-    @Override
-    public void customizeModule(final SimpleModule module) {
-        module.addAbstractTypeMapping(GameSpecificPlayerAttributes.class, TSBPlayerAttributes.class);
-        module.addAbstractTypeMapping(MaskedMultiPlayerGame.class, TSBMaskedGame.class);
-        module.registerSubtypes(TSBMaskedGame.class);
-    }
+  @Override
+  public void customizeModule(final SimpleModule module) {
+    module.addAbstractTypeMapping(GameSpecificPlayerAttributes.class, TSBPlayerAttributes.class);
+    module.addAbstractTypeMapping(MaskedMultiPlayerGame.class, TSBMaskedGame.class);
+    module.registerSubtypes(TSBMaskedGame.class);
+  }
 
 }

@@ -2,16 +2,15 @@ package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.Cell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.Grid;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Date: 8/28/18
- * Time: 6:59 PM
+ * Date: 8/28/18 Time: 6:59 PM
  */
 public class Sidewinder {
+
   private final Random random = new Random();
 
   public void make2DMaze(Grid grid) {

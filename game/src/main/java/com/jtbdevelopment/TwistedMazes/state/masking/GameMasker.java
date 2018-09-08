@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GameMasker extends
-        AbstractMongoMultiPlayerGameMasker<GameFeature, TSBGame, TSBMaskedGame> {
+    AbstractMongoMultiPlayerGameMasker<GameFeature, TSBGame, TSBMaskedGame> {
 
-    protected TSBMaskedGame newMaskedGame() {
-        return new TSBMaskedGame();
-    }
+  protected TSBMaskedGame newMaskedGame() {
+    return new TSBMaskedGame();
+  }
 
 }

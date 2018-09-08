@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class TSBPlayerAttributesFactory implements GameSpecificPlayerAttributesFactory {
 
-    @Override
-    public GameSpecificPlayerAttributes newPlayerAttributes() {
-        return new TSBPlayerAttributes();
-    }
+  @Override
+  public GameSpecificPlayerAttributes newPlayerAttributes() {
+    return new TSBPlayerAttributes();
+  }
 
-    @Override
-    public GameSpecificPlayerAttributes newManualPlayerAttributes() {
-        return new TSBPlayerAttributes();
-    }
+  @Override
+  public GameSpecificPlayerAttributes newManualPlayerAttributes() {
+    return new TSBPlayerAttributes();
+  }
 
-    @Override
-    public GameSpecificPlayerAttributes newSystemPlayerAttributes() {
-        return null;
-    }
+  @Override
+  public GameSpecificPlayerAttributes newSystemPlayerAttributes() {
+    return null;
+  }
 
 }

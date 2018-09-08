@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @ReadingConverter
 public class StringToGameFeatureConverter implements MongoConverter<String, GameFeature> {
 
-    @Override
-    public GameFeature convert(final String source) {
-        //noinspection ConstantConditions
-        return source != null ? GameFeature.valueOf(source) : null;
-    }
+  @Override
+  public GameFeature convert(final String source) {
+    //noinspection ConstantConditions
+    return source != null ? GameFeature.valueOf(source) : null;
+  }
 
 }

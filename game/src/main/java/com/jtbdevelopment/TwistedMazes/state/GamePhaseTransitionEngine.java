@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("unused")
 @Component
 public class GamePhaseTransitionEngine extends
-        AbstractMPGamePhaseTransitionEngine<ObjectId, GameFeature, TSBGame> {
+    AbstractMPGamePhaseTransitionEngine<ObjectId, GameFeature, TSBGame> {
 
-    public GamePhaseTransitionEngine(final GameScorer<TSBGame> gameScorer) {
-        super(gameScorer);
-    }
+  public GamePhaseTransitionEngine(final GameScorer<TSBGame> gameScorer) {
+    super(gameScorer);
+  }
 }

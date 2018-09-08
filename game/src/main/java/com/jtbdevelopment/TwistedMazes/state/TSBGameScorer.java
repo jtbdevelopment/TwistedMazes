@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TSBGameScorer implements GameScorer<TSBGame> {
 
-    public TSBGame scoreGame(final TSBGame game) {
-        return game;
-    }
+  public TSBGame scoreGame(final TSBGame game) {
+    return game;
+  }
 
 }
