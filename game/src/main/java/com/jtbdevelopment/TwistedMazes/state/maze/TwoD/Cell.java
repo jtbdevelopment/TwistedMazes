@@ -6,10 +6,10 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Date: 8/27/18
- * Time: 9:38 AM
+ * Date: 8/27/18 Time: 9:38 AM
  */
 public class Cell {
+
   private final int row;
   private final int col;
   private Cell north, east, south, west;
@@ -92,11 +92,15 @@ public class Cell {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Cell)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Cell)) {
+      return false;
+    }
     Cell cell1 = (Cell) o;
     return row == cell1.row &&
-      col == cell1.col;
+        col == cell1.col;
   }
 
   @Override
