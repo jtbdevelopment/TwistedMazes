@@ -37,7 +37,7 @@ public class Distances {
     Cell current = goal;
     Distances breadcrumbs = new Distances(root);
     breadcrumbs.addDistance(current, this.getDistance(current));
-    while (!current.equals(goal)) {
+    while (!current.equals(root)) {
       for (Cell neighbor : current.getLinkedCells()) {
         if (getDistance(neighbor) < getDistance(current)) {
           breadcrumbs.addDistance(neighbor, getDistance(neighbor));

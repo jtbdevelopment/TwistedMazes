@@ -105,7 +105,6 @@ public class Cell {
 
   @Override
   public int hashCode() {
-
     return Objects.hash(row, col);
   }
 }
