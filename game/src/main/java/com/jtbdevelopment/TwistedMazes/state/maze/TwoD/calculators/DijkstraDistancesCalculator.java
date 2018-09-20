@@ -1,5 +1,7 @@
-package com.jtbdevelopment.TwistedMazes.state.maze.twod;
+package com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators;
 
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
 import java.util.LinkedList;
 import java.util.Queue;
 import org.springframework.stereotype.Component;

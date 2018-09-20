@@ -1,7 +1,10 @@
-package com.jtbdevelopment.TwistedMazes.state.maze.twod;
+package com.jtbdevelopment.TwistedMazes.state.maze.twod.model;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -15,6 +18,10 @@ public class Distances {
   public Distances(Cell root) {
     this.root = root;
     distanceFromRoot.put(root, 0);
+  }
+
+  public Cell getRoot() {
+    return root;
   }
 
   public void addDistance(final Cell cell, int distance) {
@@ -33,19 +40,11 @@ public class Distances {
     return distanceFromRoot.containsKey(cell);
   }
 
-  public Distances pathTo(final Cell goal) {
-    Cell current = goal;
-    Distances breadcrumbs = new Distances(root);
-    breadcrumbs.addDistance(current, this.getDistance(current));
-    while (!current.equals(root)) {
-      for (Cell neighbor : current.getLinkedCells()) {
-        if (getDistance(neighbor) < getDistance(current)) {
-          breadcrumbs.addDistance(neighbor, getDistance(neighbor));
-          current = neighbor;
-        }
-      }
-    }
-    return breadcrumbs;
+  public Cell maxDistanceCell() {
+    Optional<Entry<Cell, Integer>> max = distanceFromRoot.entrySet()
+      .stream()
+      .max(Comparator.comparing(Entry::getValue));
+    return max.orElseThrow(() -> new RuntimeException("no max cell?")).getKey();
   }
 
 }

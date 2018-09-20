@@ -1,6 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import org.junit.Test;
 
 /**

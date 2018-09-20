@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.Cell;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;

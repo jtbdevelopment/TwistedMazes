@@ -1,4 +1,8 @@
-package com.jtbdevelopment.TwistedMazes.state.maze.twod;
+package com.jtbdevelopment.TwistedMazes.state.maze.twod.display;
+
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 
 /**
  * Date: 9/8/18 Time: 6:17 AM

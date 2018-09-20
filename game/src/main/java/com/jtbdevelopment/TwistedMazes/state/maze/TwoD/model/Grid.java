@@ -1,4 +1,4 @@
-package com.jtbdevelopment.TwistedMazes.state.maze.twod;
+package com.jtbdevelopment.TwistedMazes.state.maze.twod.model;
 
 import java.util.Arrays;
 import java.util.List;
