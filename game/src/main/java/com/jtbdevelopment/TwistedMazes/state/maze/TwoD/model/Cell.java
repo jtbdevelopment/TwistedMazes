@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Date: 8/27/18 Time: 9:38 AM
@@ -22,6 +24,10 @@ public class Cell {
 
   public Set<Cell> getLinkedCells() {
     return Collections.unmodifiableSet(linkedCells);
+  }
+
+  public Set<Cell> getNeighbors() {
+    return Stream.of(north, east, south, west).filter(Objects::nonNull).collect(Collectors.toSet());
   }
 
   public boolean isLinked(final Cell cell) {
