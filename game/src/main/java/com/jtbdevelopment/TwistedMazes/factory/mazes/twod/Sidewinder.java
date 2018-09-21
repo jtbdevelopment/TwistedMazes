@@ -4,14 +4,11 @@ import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Date: 8/28/18 Time: 6:59 PM
  */
-public class Sidewinder {
-
-  private final Random random = new Random();
+public class Sidewinder extends AbstractGenerator2DMaze implements Generator2DMaze {
 
   public void make2DMaze(Grid grid) {
     grid.streamRows().forEach(row -> {
@@ -23,7 +20,7 @@ public class Sidewinder {
 
         boolean shouldClose = atEastern || (!atNorthern && random.nextBoolean());
         if (shouldClose) {
-          Cell join = run.get(random.nextInt(run.size()));
+          Cell join = getRandomCell(run);
           if (join.getNorth() != null) {
             join.linkCell(join.getNorth());
           }
