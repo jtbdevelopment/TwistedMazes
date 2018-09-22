@@ -69,6 +69,10 @@ public class Grid {
     return IntStream.range(0, rows).mapToObj(row -> Arrays.asList(cells[row]));
   }
 
+  public long getDeadEnds() {
+    return stream().filter(c -> c.getLinkedCells().size() == 1).count();
+  }
+
   public int getRows() {
     return rows;
   }
