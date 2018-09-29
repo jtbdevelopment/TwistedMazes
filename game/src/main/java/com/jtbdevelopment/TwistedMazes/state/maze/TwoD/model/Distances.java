@@ -25,11 +25,16 @@ public class Distances {
   }
 
   public void addDistance(final Cell cell, int distance) {
-    distanceFromRoot.put(cell, distance);
+    if (cell != null) {
+      distanceFromRoot.put(cell, distance);
+    }
   }
 
   public int getDistance(final Cell cell) {
-    return distanceFromRoot.get(cell);
+    if (cell != null) {
+      return distanceFromRoot.get(cell);
+    }
+    return 0;
   }
 
   public Set<Cell> getCells() {
@@ -37,7 +42,7 @@ public class Distances {
   }
 
   public boolean hasCell(final Cell cell) {
-    return distanceFromRoot.containsKey(cell);
+    return cell != null && distanceFromRoot.containsKey(cell);
   }
 
   public Cell maxDistanceCell() {

@@ -16,7 +16,7 @@ public class LongestPathCalculator {
   }
 
   public Distances calcLongestPath(final Grid grid) {
-    Distances initialDistances = distancesCalculator.computeDistances(grid.getCell(0, 0));
+    Distances initialDistances = distancesCalculator.computeDistances(grid.getRandomCell());
     Cell start = initialDistances.maxDistanceCell();
     return distancesCalculator.computeDistances(start);
   }

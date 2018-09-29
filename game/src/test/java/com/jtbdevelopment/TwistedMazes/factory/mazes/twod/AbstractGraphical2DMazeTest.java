@@ -10,19 +10,37 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 9/20/18 Time: 7:59 PM
  */
-public class AbstractGraphicalMazeTest {
+public abstract class AbstractGraphical2DMazeTest {
 
-  private GridToPNG gridToPNG = new GridToPNG();
-  private DistanceGridToPNG distanceGridToPNG = new DistanceGridToPNG();
-  private DijkstraDistancesCalculator distancesCalculator = new DijkstraDistancesCalculator();
-  private LongestPathCalculator longestPathCalculator = new LongestPathCalculator(
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
+  protected Grid grid = new Grid(20, 20);
+  protected GridToPNG gridToPNG = new GridToPNG();
+  protected DistanceGridToPNG distanceGridToPNG = new DistanceGridToPNG();
+  protected DijkstraDistancesCalculator distancesCalculator = new DijkstraDistancesCalculator();
+  protected LongestPathCalculator longestPathCalculator = new LongestPathCalculator(
     distancesCalculator);
 
-  protected void createPNGImages(final Grid grid, final String rootName)
+
+  protected abstract String getFileName();
+
+  protected abstract Generator2DMaze getGenerator();
+
+  @Test
+  public void testPrintARegularMaze() throws IOException {
+    getGenerator().make2DMaze(grid);
+    logger.info(System.lineSeparator() + grid.toString());
+
+    createPNGImages(grid, getFileName());
+  }
+
+  private void createPNGImages(final Grid grid, final String rootName)
     throws IOException {
     Files.write(Paths.get(rootName + ".png"), gridToPNG.convert(grid),
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);

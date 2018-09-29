@@ -2,6 +2,7 @@ package com.jtbdevelopment.TwistedMazes.state.maze.twod.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -12,9 +13,13 @@ import java.util.stream.Stream;
 public class Grid {
 
   private static final Random random = new Random();
-  private final Cell[][] cells;
-  private int rows;
-  private int cols;
+  protected Cell[][] cells;
+  protected int rows;
+  protected int cols;
+
+  protected Grid() {
+
+  }
 
   public Grid(final Grid copy) {
     this.rows = copy.rows;
@@ -23,20 +28,34 @@ public class Grid {
   }
 
   public Grid(final int rows, final int cols) {
+    initializeGrid(rows, cols);
+  }
+
+  protected void initializeGrid(final int rows, final int cols) {
     this.rows = rows;
     this.cols = cols;
     cells = new Cell[rows][cols];
+    prepareCells(rows, cols);
+    assignNeighbors(rows, cols);
+  }
+
+  protected void assignNeighbors(final int rows, final int cols) {
+    for (int row = 0; row < rows; ++row) {
+      for (int col = 0; col < cols; ++col) {
+        if (cells[row][col] != null) {
+          cells[row][col].setNorth(getCell(row - 1, col));
+          cells[row][col].setSouth(getCell(row + 1, col));
+          cells[row][col].setWest(getCell(row, col - 1));
+          cells[row][col].setEast(getCell(row, col + 1));
+        }
+      }
+    }
+  }
+
+  protected void prepareCells(final int rows, final int cols) {
     for (int row = 0; row < rows; ++row) {
       for (int col = 0; col < cols; ++col) {
         cells[row][col] = new Cell(row, col);
-      }
-    }
-    for (int row = 0; row < rows; ++row) {
-      for (int col = 0; col < cols; ++col) {
-        cells[row][col].setNorth(getCell(row - 1, col));
-        cells[row][col].setSouth(getCell(row + 1, col));
-        cells[row][col].setWest(getCell(row, col - 1));
-        cells[row][col].setEast(getCell(row, col + 1));
       }
     }
   }
@@ -62,7 +81,8 @@ public class Grid {
   public Stream<Cell> stream() {
     return IntStream.range(0, rows)
         .boxed()
-        .flatMap(row -> IntStream.range(0, cols).mapToObj(col -> getCell(row, col)));
+        .flatMap(row -> IntStream.range(0, cols).mapToObj(col -> getCell(row, col)))
+        .filter(Objects::nonNull);
   }
 
   public Stream<List<Cell>> streamRows() {
@@ -98,8 +118,8 @@ public class Grid {
       StringBuilder bottom = new StringBuilder("+");
       row.forEach(cell -> {
         top.append(cellContent(cell));
-        top.append(cell.isLinked(cell.getEast()) ? " " : "|");
-        bottom.append(cell.isLinked(cell.getSouth()) ? "   " : "---");
+        top.append((cell != null && cell.isLinked(cell.getEast())) ? " " : "|");
+        bottom.append((cell != null && cell.isLinked(cell.getSouth())) ? "   " : "---");
         bottom.append("+");
       });
       builder.append(top).append(System.lineSeparator());

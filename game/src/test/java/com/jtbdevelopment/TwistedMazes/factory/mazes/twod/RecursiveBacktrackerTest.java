@@ -1,23 +1,20 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
-import java.io.IOException;
-import org.junit.Test;
-
 /**
  * Date: 9/21/18 Time: 6:58 PM
  */
-public class RecursiveBacktrackerTest extends AbstractGraphicalMazeTest {
+public class RecursiveBacktrackerTest extends AbstractGraphical2DMazeWithMaskingTest {
 
   private RecursiveBacktracker backtracker = new RecursiveBacktracker();
 
-  @Test
-  public void printABinaryTreeMaze() throws IOException {
-    Grid grid = new Grid(15, 15);
-    backtracker.make2DMaze(grid);
-    System.out.print(grid.toString());
+  @Override
+  protected String getFileName() {
+    return "recursivebacktracker";
+  }
 
-    createPNGImages(grid, "recursivebacktracker");
+  @Override
+  protected Generator2DMaze getGenerator() {
+    return backtracker;
   }
 
 }

@@ -1,23 +1,20 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
-import java.io.IOException;
-import org.junit.Test;
-
 /**
  * Date: 9/20/18 Time: 7:57 PM
  */
-public class AldousBroderTest extends AbstractGraphicalMazeTest {
+public class AldousBroderTest extends AbstractGraphical2DMazeWithMaskingTest {
 
   private AldousBroder aldousBroder = new AldousBroder();
 
-  @Test
-  public void printAnAldousBroderMaze() throws IOException {
-    Grid grid = new Grid(20, 20);
-    aldousBroder.make2DMaze(grid);
-    System.out.print(grid.toString());
+  @Override
+  protected String getFileName() {
+    return "aldousbroder";
+  }
 
-    createPNGImages(grid, "aldousbroder");
+  @Override
+  protected Generator2DMaze getGenerator() {
+    return aldousBroder;
   }
 
 }

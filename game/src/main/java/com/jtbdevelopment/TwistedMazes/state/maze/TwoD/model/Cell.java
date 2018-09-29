@@ -31,7 +31,7 @@ public class Cell {
   }
 
   public boolean isLinked(final Cell cell) {
-    return linkedCells.contains(cell);
+    return cell != null && linkedCells.contains(cell);
   }
 
   public void linkCell(final Cell cell) {
@@ -43,16 +43,20 @@ public class Cell {
   }
 
   private void linkCell(final Cell cell, final boolean bi) {
-    linkedCells.add(cell);
-    if (bi) {
-      cell.linkCell(this, false);
+    if (cell != null) {
+      linkedCells.add(cell);
+      if (bi) {
+        cell.linkCell(this, false);
+      }
     }
   }
 
   private void unlinkCell(final Cell cell, final boolean bi) {
-    linkedCells.add(cell);
-    if (bi) {
-      cell.unlinkCell(this, false);
+    if (cell != null) {
+      linkedCells.remove(cell);
+      if (bi) {
+        cell.unlinkCell(this, false);
+      }
     }
   }
 
