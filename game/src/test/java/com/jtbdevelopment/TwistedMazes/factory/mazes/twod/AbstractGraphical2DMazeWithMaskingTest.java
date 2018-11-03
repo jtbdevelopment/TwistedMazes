@@ -1,5 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.masking.MaskedGridASCIIFileReader;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Mask;
@@ -12,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * Date: 9/20/18 Time: 7:59 PM
@@ -19,8 +21,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractGraphical2DMazeWithMaskingTest extends AbstractGraphical2DMazeTest {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
-  protected Grid grid = new Grid(20, 20);
-  protected MaskedGrid maskedGrid;
+  protected MaskedGrid manualMaskedGrid;
 
   @Before
   public void setup() {
@@ -28,16 +29,16 @@ public abstract class AbstractGraphical2DMazeWithMaskingTest extends AbstractGra
     mask.disable(0, 0);
     mask.disable(2, 2);
     mask.disable(4, 4);
-    maskedGrid = new MaskedGrid(mask);
+    manualMaskedGrid = new MaskedGrid(mask);
   }
 
 
   @Test
   public void testPrintAMaskedMaze() throws IOException {
-    getGenerator().make2DMaze(maskedGrid);
-    logger.info(System.lineSeparator() + maskedGrid.toString());
+    getGenerator().make2DMaze(manualMaskedGrid);
+    logger.info(System.lineSeparator() + manualMaskedGrid.toString());
 
-    createPNGImages(maskedGrid, getFileName() + "masked");
+    createPNGImages(manualMaskedGrid, getFileName() + "masked");
   }
 
   private void createPNGImages(final Grid grid, final String rootName)
@@ -48,5 +49,17 @@ public abstract class AbstractGraphical2DMazeWithMaskingTest extends AbstractGra
     Distances distances = longestPathCalculator.calcLongestPath(grid);
     Files.write(Paths.get(rootName + "heatmap.png"), distanceGridToPNG.convert(grid, distances),
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+  }
+
+  @Test
+  public void testPringAMasketMazeUsingSampleASCII() throws IOException {
+    MaskedGridASCIIFileReader reader = new MaskedGridASCIIFileReader();
+    ClassPathResource file = new ClassPathResource("/masks/sampleasciimask.txt");
+    MaskedGrid maskedGrid = reader.readMaskedGrid(file);
+
+    getGenerator().make2DMaze(maskedGrid);
+    logger.info(System.lineSeparator() + maskedGrid.toString());
+
+    createPNGImages(maskedGrid, getFileName() + "sampleasciimasked");
   }
 }

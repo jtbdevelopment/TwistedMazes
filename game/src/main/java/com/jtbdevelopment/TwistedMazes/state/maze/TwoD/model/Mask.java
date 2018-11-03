@@ -44,6 +44,10 @@ public class Mask {
     return enabled[row][col];
   }
 
+  public void setEnabled(int row, int col, boolean e) {
+    enabled[row][col] = e;
+  }
+
   public void enable(int row, int col) {
     enabled[row][col] = true;
   }
