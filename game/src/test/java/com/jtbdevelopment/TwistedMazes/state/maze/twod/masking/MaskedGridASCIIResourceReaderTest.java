@@ -11,9 +11,9 @@ import org.springframework.core.io.ClassPathResource;
 /**
  * Date: 11/3/18 Time: 4:16 PM
  */
-public class MaskedGridASCIIFileReaderTest {
+public class MaskedGridASCIIResourceReaderTest {
 
-  private MaskedGridASCIIFileReader reader = new MaskedGridASCIIFileReader();
+  private MaskedGridASCIIResourceReader reader = new MaskedGridASCIIResourceReader();
 
   @Test
   public void testReadsSampleASCIIFileAndMakesGrid() {

@@ -3,20 +3,23 @@ package com.jtbdevelopment.TwistedMazes.state.maze.twod.masking;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Mask;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.MaskedGrid;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StreamUtils;
 
 /**
  * Date: 11/3/18 Time: 4:00 PM
  */
 @Component
-public class MaskedGridASCIIFileReader {
+public class MaskedGridASCIIResourceReader implements MaskedGridResourceReader {
 
   public MaskedGrid readMaskedGrid(final Resource resource) {
     try {
-      List<String> lines = Files.readAllLines(resource.getFile().toPath());
+      String string = StreamUtils.copyToString(resource.getInputStream(), Charset.defaultCharset());
+      List<String> lines = Arrays.asList(string.split(System.lineSeparator()));
       assert (lines.size() > 0);
       int cols = lines.get(0).length();
       if (!lines.stream().allMatch(l -> l.length() == cols)) {

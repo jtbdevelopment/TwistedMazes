@@ -1,6 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.masking.MaskedGridASCIIFileReader;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.masking.MaskedGridASCIIResourceReader;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.masking.MaskedGridPNGResourceReader;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Mask;
@@ -52,8 +53,8 @@ public abstract class AbstractGraphical2DMazeWithMaskingTest extends AbstractGra
   }
 
   @Test
-  public void testPringAMasketMazeUsingSampleASCII() throws IOException {
-    MaskedGridASCIIFileReader reader = new MaskedGridASCIIFileReader();
+  public void testPringAMaskedtMazeUsingSampleASCII() throws IOException {
+    MaskedGridASCIIResourceReader reader = new MaskedGridASCIIResourceReader();
     ClassPathResource file = new ClassPathResource("/masks/sampleasciimask.txt");
     MaskedGrid maskedGrid = reader.readMaskedGrid(file);
 
@@ -61,5 +62,17 @@ public abstract class AbstractGraphical2DMazeWithMaskingTest extends AbstractGra
     logger.info(System.lineSeparator() + maskedGrid.toString());
 
     createPNGImages(maskedGrid, getFileName() + "sampleasciimasked");
+  }
+
+  @Test
+  public void testPringAMaskedMazeUsingSamplePNG() throws IOException {
+    MaskedGridPNGResourceReader reader = new MaskedGridPNGResourceReader();
+    ClassPathResource file = new ClassPathResource("/masks/samplepngmask.png");
+    MaskedGrid maskedGrid = reader.readMaskedGrid(file);
+
+    getGenerator().make2DMaze(maskedGrid);
+    logger.info(System.lineSeparator() + maskedGrid.toString());
+
+    createPNGImages(maskedGrid, getFileName() + "samplepngmasked");
   }
 }
