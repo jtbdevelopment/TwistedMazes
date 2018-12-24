@@ -1,8 +1,8 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,9 +15,9 @@ public class LongestPathCalculator {
     this.distancesCalculator = distancesCalculator;
   }
 
-  public Distances calcLongestPath(final Grid grid) {
+  public Distances calcLongestPath(final AbstractGrid grid) {
     Distances initialDistances = distancesCalculator.computeDistances(grid.getRandomCell());
-    Cell start = initialDistances.maxDistanceCell();
+    AbstractCell start = initialDistances.maxDistanceCell();
     return distancesCalculator.computeDistances(start);
   }
 }

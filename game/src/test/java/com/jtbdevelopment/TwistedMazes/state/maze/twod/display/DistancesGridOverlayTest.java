@@ -5,7 +5,7 @@ import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.DijkstraDista
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.LongestPathCalculator;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.ShortestDistanceCalculator;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import org.junit.Test;
 
 /**
@@ -21,7 +21,7 @@ public class DistancesGridOverlayTest {
 
   @Test
   public void testDrawingGridWithOverlay() {
-    Grid grid = new Grid(5, 5);
+    RectangleGrid grid = new RectangleGrid(5, 5);
     tree.make2DMaze(grid);
     Distances distances = distancesCalculator.computeDistances(grid.getCell(0, 0));
 
@@ -30,7 +30,7 @@ public class DistancesGridOverlayTest {
 
   @Test
   public void testDrawingGridWithOverlayPathFromTopLeftToBottomRight() {
-    Grid grid = new Grid(5, 5);
+    RectangleGrid grid = new RectangleGrid(5, 5);
     tree.make2DMaze(grid);
     Distances distances = distancesCalculator.computeDistances(grid.getCell(0, 0));
     Distances pathDistances = shortestDistanceCalculator.pathTo(distances, grid.getCell(4, 0));
@@ -40,7 +40,7 @@ public class DistancesGridOverlayTest {
 
   @Test
   public void testDrawingWithMaxDistancePath() {
-    Grid grid = new Grid(5, 5);
+    RectangleGrid grid = new RectangleGrid(5, 5);
     tree.make2DMaze(grid);
     Distances distances = longestPathCalculator.calcLongestPath(grid);
     Distances pathDistances = shortestDistanceCalculator

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.MaskedGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.MaskedRectangleGrid;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
@@ -18,7 +18,7 @@ public class MaskedGridASCIIResourceReaderTest {
   @Test
   public void testReadsSampleASCIIFileAndMakesGrid() {
     ClassPathResource file = new ClassPathResource("/masks/sampleasciimask.txt");
-    MaskedGrid maskedGrid = reader.readMaskedGrid(file);
+    MaskedRectangleGrid maskedGrid = reader.readMaskedGrid(file);
     assertEquals(10, maskedGrid.getRows());
     assertEquals(10, maskedGrid.getCols());
     assertFalse(maskedGrid.getMask().isEnabled(0, 0));

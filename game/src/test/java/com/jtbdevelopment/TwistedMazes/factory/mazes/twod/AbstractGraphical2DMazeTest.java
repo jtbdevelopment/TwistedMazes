@@ -3,7 +3,7 @@ package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.DijkstraDistancesCalculator;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.LongestPathCalculator;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import com.jtbdevelopment.TwistedMazes.util.png.twod.DistanceGridToPNG;
 import com.jtbdevelopment.TwistedMazes.util.png.twod.GridToPNG;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractGraphical2DMazeTest {
 
   protected final Logger logger = LoggerFactory.getLogger(getClass());
-  protected Grid grid = new Grid(20, 20);
+  protected RectangleGrid grid = new RectangleGrid(20, 20);
   protected GridToPNG gridToPNG = new GridToPNG();
   protected DistanceGridToPNG distanceGridToPNG = new DistanceGridToPNG();
   protected DijkstraDistancesCalculator distancesCalculator = new DijkstraDistancesCalculator();
@@ -40,7 +40,7 @@ public abstract class AbstractGraphical2DMazeTest {
     createPNGImages(grid, getFileName());
   }
 
-  private void createPNGImages(final Grid grid, final String rootName)
+  private void createPNGImages(final RectangleGrid grid, final String rootName)
     throws IOException {
     Files.write(Paths.get(rootName + ".png"), gridToPNG.convert(grid),
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);

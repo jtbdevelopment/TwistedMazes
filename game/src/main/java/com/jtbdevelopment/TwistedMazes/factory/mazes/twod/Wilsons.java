@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 /**
  * Date: 9/20/18 Time: 7:49 PM
  */
-public class Wilsons extends AbstractGenerator2DMaze implements Generator2DMaze {
+public class Wilsons extends AbstractGenerator2DMaze<AbstractGrid<AbstractCell>> {
 
-  public void make2DMaze(final Grid grid) {
-    List<Cell> unvisited = grid.stream().collect(Collectors.toList());
+  public void make2DMaze(final AbstractGrid<AbstractCell> grid) {
+    List<AbstractCell> unvisited = grid.stream().collect(Collectors.toList());
     unvisited.remove(getRandomCell(unvisited));
     while (!unvisited.isEmpty()) {
-      Cell randomCell = getRandomCell(unvisited);
-      List<Cell> path = new ArrayList<>();
+      AbstractCell randomCell = getRandomCell(unvisited);
+      List<AbstractCell> path = new ArrayList<>();
       path.add(randomCell);
       while (unvisited.contains(randomCell)) {
         randomCell = getRandomCell(randomCell.getNeighbors());

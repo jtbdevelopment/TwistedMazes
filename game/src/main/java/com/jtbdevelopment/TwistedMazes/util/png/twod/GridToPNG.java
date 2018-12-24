@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.util.png.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -14,18 +14,18 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GridToPNG implements Converter<Grid, byte[]> {
+public class GridToPNG implements Converter<RectangleGrid, byte[]> {
 
   private static final int CELL_SIZE = 10;
   private static final Color WHITE = Color.WHITE;
   private static final Color BLACK = Color.BLACK;
 
-  protected Color backgroundForCell(final Cell cell) {
+  protected Color backgroundForCell(final RectangleCell cell) {
     return WHITE;
   }
 
   @Override
-  public byte[] convert(final Grid value) {
+  public byte[] convert(final RectangleGrid value) {
     int width = value.getCols() * CELL_SIZE;
     int height = value.getRows() * CELL_SIZE;
 

@@ -1,6 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
 
 /**
@@ -8,13 +8,13 @@ import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
  */
 public class ShortestDistanceCalculator {
 
-  public Distances pathTo(final Distances rootDistances, final Cell goal) {
-    Cell current = goal;
-    Cell root = rootDistances.getRoot();
+  public Distances pathTo(final Distances rootDistances, final AbstractCell goal) {
+    AbstractCell current = goal;
+    AbstractCell root = rootDistances.getRoot();
     Distances breadcrumbs = new Distances(root);
     breadcrumbs.addDistance(current, rootDistances.getDistance(current));
     while (!current.equals(root)) {
-      for (Cell neighbor : current.getLinkedCells()) {
+      for (AbstractCell neighbor : current.getLinkedCells()) {
         if (rootDistances.getDistance(neighbor) < rootDistances.getDistance(current)) {
           breadcrumbs.addDistance(neighbor, rootDistances.getDistance(neighbor));
           current = neighbor;

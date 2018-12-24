@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.masking;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Mask;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.MaskedGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.MaskedRectangleGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleMask;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import org.springframework.util.StreamUtils;
 @Component
 public class MaskedGridASCIIResourceReader implements MaskedGridResourceReader {
 
-  public MaskedGrid readMaskedGrid(final Resource resource) {
+  public MaskedRectangleGrid readMaskedGrid(final Resource resource) {
     try {
       String string = StreamUtils.copyToString(resource.getInputStream(), Charset.defaultCharset());
       List<String> lines = Arrays.asList(string.split(System.lineSeparator()));
@@ -25,14 +25,14 @@ public class MaskedGridASCIIResourceReader implements MaskedGridResourceReader {
       if (!lines.stream().allMatch(l -> l.length() == cols)) {
         throw new IllegalArgumentException("all lines should be same length");
       }
-      Mask mask = new Mask(lines.size(), cols);
+      RectangleMask mask = new RectangleMask(lines.size(), cols);
       for (int row = 0; row < lines.size(); ++row) {
         char[] line = lines.get(row).toCharArray();
         for (int col = 0; col < cols; ++col) {
           mask.setEnabled(row, col, line[col] != 'X');
         }
       }
-      return new MaskedGrid(mask);
+      return new MaskedRectangleGrid(mask);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

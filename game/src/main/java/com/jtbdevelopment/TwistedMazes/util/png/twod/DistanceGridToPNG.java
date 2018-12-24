@@ -1,19 +1,19 @@
 package com.jtbdevelopment.TwistedMazes.util.png.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import java.awt.Color;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DistanceGridToPNG {
 
-  public byte[] convert(final Grid grid, final Distances distances) {
+  public byte[] convert(final RectangleGrid grid, final Distances distances) {
     double farthestDistance = distances.getDistance(distances.maxDistanceCell());
     return new GridToPNG() {
       @Override
-      protected Color backgroundForCell(final Cell cell) {
+      protected Color backgroundForCell(final RectangleCell cell) {
         double distance = distances.getDistance(cell);
         double intensity = (farthestDistance - distance) / farthestDistance;
         int dark = (int) Math.round(255 * intensity);

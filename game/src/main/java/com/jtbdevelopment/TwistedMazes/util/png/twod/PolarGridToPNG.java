@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.util.png.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.polar.PolarCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.polar.PolarGrid;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -15,20 +15,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PolarGridToPNG implements Converter<Grid, byte[]> {
+public class PolarGridToPNG implements Converter<PolarGrid, byte[]> {
 
   private static final int CELL_SIZE = 10;
   private static final Color WHITE = Color.WHITE;
   private static final Color BLACK = Color.BLACK;
 
-  protected Color backgroundForCell(final Cell cell) {
+  protected Color backgroundForCell(final PolarCell cell) {
     return WHITE;
   }
 
   @Override
-  public byte[] convert(final Grid value) {
-    int width = value.getCols() * CELL_SIZE * 2;
+  public byte[] convert(final PolarGrid value) {
     int height = value.getRows() * CELL_SIZE * 2;
+    int width = height;
     int centerX = width / 2;
     int centerY = height / 2;
     Dimension imgDim = new Dimension(width + 1, height + 1);
@@ -42,7 +42,7 @@ public class PolarGridToPNG implements Converter<Grid, byte[]> {
     g2d.setColor(BLACK);
 
     value.stream().forEach(cell -> {
-      double theta = 2 * Math.PI / value.getCols();
+      double theta = 2 * Math.PI / value.getRows();
       double inner_radius = cell.getRow() * CELL_SIZE;
       double outer_radius = (cell.getRow() + 1) * CELL_SIZE;
       double theta_counterclockwise = cell.getCol() * theta;
@@ -56,10 +56,10 @@ public class PolarGridToPNG implements Converter<Grid, byte[]> {
       int cy = centerY + ((int) (inner_radius * Math.sin(theta_clockwise)));
       int dx = centerX + ((int) (outer_radius * Math.cos(theta_clockwise)));
       int dy = centerY + ((int) (outer_radius * Math.sin(theta_clockwise)));
-      if (cell.getNorth() == null || !cell.isLinked(cell.getNorth())) {
+      if (cell.getInward() == null || !cell.isLinked(cell.getInward())) {
         g2d.drawLine(ax, ay, cx, cy);
       }
-      if (cell.getEast() == null || !cell.isLinked(cell.getEast())) {
+      if (cell.getCw() == null || !cell.isLinked(cell.getCw())) {
         g2d.drawLine(cx, cy, dx, dy);
       }
     });

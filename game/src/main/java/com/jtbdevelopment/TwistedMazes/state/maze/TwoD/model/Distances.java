@@ -12,43 +12,43 @@ import java.util.Set;
  */
 public class Distances {
 
-  private final Cell root;
-  private final Map<Cell, Integer> distanceFromRoot = new HashMap<>();
+  private final AbstractCell root;
+  private final Map<AbstractCell, Integer> distanceFromRoot = new HashMap<>();
 
-  public Distances(Cell root) {
+  public Distances(AbstractCell root) {
     this.root = root;
     distanceFromRoot.put(root, 0);
   }
 
-  public Cell getRoot() {
+  public AbstractCell getRoot() {
     return root;
   }
 
-  public void addDistance(final Cell cell, int distance) {
+  public void addDistance(final AbstractCell cell, int distance) {
     if (cell != null) {
       distanceFromRoot.put(cell, distance);
     }
   }
 
-  public int getDistance(final Cell cell) {
+  public int getDistance(final AbstractCell cell) {
     if (cell != null) {
       return distanceFromRoot.get(cell);
     }
     return 0;
   }
 
-  public Set<Cell> getCells() {
+  public Set<AbstractCell> getCells() {
     return distanceFromRoot.keySet();
   }
 
-  public boolean hasCell(final Cell cell) {
+  public boolean hasCell(final AbstractCell cell) {
     return cell != null && distanceFromRoot.containsKey(cell);
   }
 
-  public Cell maxDistanceCell() {
-    Optional<Entry<Cell, Integer>> max = distanceFromRoot.entrySet()
-      .stream()
-      .max(Comparator.comparing(Entry::getValue));
+  public AbstractCell maxDistanceCell() {
+    Optional<Entry<AbstractCell, Integer>> max = distanceFromRoot.entrySet()
+        .stream()
+        .max(Comparator.comparing(Entry::getValue));
     return max.orElseThrow(() -> new RuntimeException("no max cell?")).getKey();
   }
 

@@ -1,8 +1,8 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.display;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 
 /**
  * Date: 9/8/18 Time: 6:17 AM
@@ -10,10 +10,10 @@ import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 public class DistancesGridOverlay {
 
   private final Distances distances;
-  private final Grid grid;
+  private final RectangleGrid grid;
 
   public DistancesGridOverlay(
-      final Grid grid,
+      final RectangleGrid grid,
       final Distances distances) {
     this.distances = distances;
     this.grid = grid;
@@ -21,9 +21,9 @@ public class DistancesGridOverlay {
 
   @Override
   public String toString() {
-    return new Grid(grid) {
+    return new RectangleGrid(grid) {
       @Override
-      protected String cellContent(Cell cell) {
+      protected String cellContent(RectangleCell cell) {
         if (distances != null && distances.hasCell(cell)) {
           return " " + Integer.toString(distances.getDistance(cell), 36) + " ";
         }

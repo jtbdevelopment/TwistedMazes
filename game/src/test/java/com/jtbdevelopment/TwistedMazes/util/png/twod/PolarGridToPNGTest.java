@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.util.png.twod;
 
 import com.jtbdevelopment.TwistedMazes.factory.mazes.twod.RecursiveBacktracker;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.polar.PolarGrid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,13 +18,13 @@ public class PolarGridToPNGTest {
 
   @Test
   public void testDrawingPolarGrid() throws IOException {
-    Grid grid = new Grid(8, 8);
+    PolarGrid grid = new PolarGrid(8);
 
     recursiveBacktracker.make2DMaze(grid);
     polarGridToPNG.convert(grid);
 
     Files.write(Paths.get("polargrid.png"), polarGridToPNG.convert(grid),
-      StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+        StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
 
   }
 }

@@ -1,6 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.masking;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.MaskedGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.MaskedRectangleGrid;
 import org.springframework.core.io.Resource;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.core.io.Resource;
  */
 public interface MaskedGridResourceReader {
 
-  MaskedGrid readMaskedGrid(final Resource resource);
+  MaskedRectangleGrid readMaskedGrid(final Resource resource);
 }

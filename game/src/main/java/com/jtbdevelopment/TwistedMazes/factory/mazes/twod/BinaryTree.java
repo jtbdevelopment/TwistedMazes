@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
  * Date: 8/27/18 Time: 10:26 AM
  */
 @Component
-public class BinaryTree extends AbstractGenerator2DMaze implements Generator2DMaze {
+public class BinaryTree extends AbstractGenerator2DMaze<RectangleGrid> {
 
   @Override
-  public void make2DMaze(Grid grid) {
+  public void make2DMaze(final RectangleGrid grid) {
     grid.stream().forEach(cell -> {
-      List<Cell> neighbors = Stream.of(cell.getNorth(), cell.getEast())
+      List<RectangleCell> neighbors = Stream.of(cell.getNorth(), cell.getEast())
           .filter(Objects::nonNull)
           .collect(Collectors.toList());
       if (neighbors.size() > 0) {

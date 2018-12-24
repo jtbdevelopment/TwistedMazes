@@ -1,6 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -9,15 +10,16 @@ import java.util.Random;
 /**
  * Date: 9/21/18 Time: 6:32 PM
  */
-public class AbstractGenerator2DMaze {
+public abstract class AbstractGenerator2DMaze<G extends AbstractGrid> implements
+    Generator2DMaze<G> {
 
-  protected final Random random = new Random();
+  final Random random = new Random();
 
-  protected Cell getRandomCell(final Collection<Cell> cells) {
-    return getRandomCell(new ArrayList<>(cells));
+  protected <C extends AbstractCell> C getRandomCell(final Collection<C> cells) {
+    return getRandomCellFromList(new ArrayList<>(cells));
   }
 
-  protected Cell getRandomCell(final List<Cell> cells) {
+  private <C extends AbstractCell> C getRandomCellFromList(final List<C> cells) {
     return cells.get(random.nextInt(cells.size()));
   }
 }
