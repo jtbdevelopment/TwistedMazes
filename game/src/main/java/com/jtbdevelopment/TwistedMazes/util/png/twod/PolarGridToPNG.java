@@ -42,7 +42,10 @@ public class PolarGridToPNG implements Converter<PolarGrid, byte[]> {
     g2d.setColor(BLACK);
 
     value.stream().forEach(cell -> {
-      double theta = 2 * Math.PI / value.getRows();
+      if (cell.getRow() == 0) {
+        return;
+      }
+      double theta = 2 * Math.PI / value.getRow(cell.getRow()).size();
       double inner_radius = cell.getRow() * CELL_SIZE;
       double outer_radius = (cell.getRow() + 1) * CELL_SIZE;
       double theta_counterclockwise = cell.getCol() * theta;
@@ -56,10 +59,10 @@ public class PolarGridToPNG implements Converter<PolarGrid, byte[]> {
       int cy = centerY + ((int) (inner_radius * Math.sin(theta_clockwise)));
       int dx = centerX + ((int) (outer_radius * Math.cos(theta_clockwise)));
       int dy = centerY + ((int) (outer_radius * Math.sin(theta_clockwise)));
-      if (cell.getInward() == null || !cell.isLinked(cell.getInward())) {
+      if (cell.getInward() != null && !cell.isLinked(cell.getInward())) {
         g2d.drawLine(ax, ay, cx, cy);
       }
-      if (cell.getCw() == null || !cell.isLinked(cell.getCw())) {
+      if (cell.getCw() != null && !cell.isLinked(cell.getCw())) {
         g2d.drawLine(cx, cy, dx, dy);
       }
     });

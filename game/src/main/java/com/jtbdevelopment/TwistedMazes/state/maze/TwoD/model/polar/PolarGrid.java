@@ -29,7 +29,7 @@ public class PolarGrid extends AbstractGrid<PolarCell> {
     this.rows = rows;
     cells = new ArrayList<>(rows);
 
-    prepareCells(rows);
+    prepareCells();
     assignNeighbors();
   }
 
@@ -51,14 +51,14 @@ public class PolarGrid extends AbstractGrid<PolarCell> {
         }
 
         double ratio = ((double) cells.get(row).size()) / ((double) cells.get(row - 1).size());
-        PolarCell parent = cells.get(row - 1).get((int) (col / ratio));
+        PolarCell parent = cells.get(row - 1).get((int) (((double) col) / ratio));
         parent.getOutward().add(cell);
         cell.setInward(parent);
       }
     });
   }
 
-  private void prepareCells(final int rows) {
+  private void prepareCells() {
     cells.add(Collections.singletonList(new PolarCell(0, 0)));
     double row_height = 1.0 / ((double) rows);
     IntStream.range(1, rows).forEach(row -> {
@@ -67,7 +67,7 @@ public class PolarGrid extends AbstractGrid<PolarCell> {
 
       int previous_count = cells.get(row - 1).size();
       double estimated_width = circumference / ((double) previous_count);
-      int ratio = (int) (estimated_width / row_height);
+      int ratio = (int) Math.round(estimated_width / row_height);
       int colCount = previous_count * ratio;
       ArrayList<PolarCell> newRow = new ArrayList<>(colCount);
       IntStream.range(0, colCount).forEach(col -> newRow.add(new PolarCell(row, col)));

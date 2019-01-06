@@ -54,4 +54,8 @@ public abstract class AbstractGrid<C extends AbstractCell> {
   public int getRows() {
     return rows;
   }
+
+  public List<C> getRow(final int row) {
+    return cells.get(row);
+  }
 }
