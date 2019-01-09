@@ -26,7 +26,6 @@ public class RectangleGrid extends AbstractGrid<RectangleCell> {
     initializeGrid(rows, cols);
   }
 
-  @Override
   protected void initializeGrid(final int rows, final int cols) {
     this.rows = rows;
     this.cols = cols;
@@ -55,7 +54,7 @@ public class RectangleGrid extends AbstractGrid<RectangleCell> {
     IntStream.range(0, rows).forEach(row -> {
       List<RectangleCell> rowCells = this.cells.get(row);
       IntStream.range(0, cols).forEach(col -> {
-        rowCells.add(new RectangleCell(row, col));
+        rowCells.set(col, new RectangleCell(row, col));
       });
     });
   }
@@ -68,26 +67,4 @@ public class RectangleGrid extends AbstractGrid<RectangleCell> {
     return "   ";
   }
 
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder("+");
-    for (int col = 0; col < cols; ++col) {
-      builder.append("---+");
-    }
-    builder.append(System.lineSeparator());
-
-    streamRows().forEach(row -> {
-      StringBuilder top = new StringBuilder("|");
-      StringBuilder bottom = new StringBuilder("+");
-      row.forEach(cell -> {
-        top.append(cellContent(cell));
-        top.append((cell != null && cell.isLinked(cell.getEast())) ? " " : "|");
-        bottom.append((cell != null && cell.isLinked(cell.getSouth())) ? "   " : "---");
-        bottom.append("+");
-      });
-      builder.append(top).append(System.lineSeparator());
-      builder.append(bottom).append(System.lineSeparator());
-    });
-    return builder.toString();
-  }
 }

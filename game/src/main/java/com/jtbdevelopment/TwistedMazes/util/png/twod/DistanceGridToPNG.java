@@ -11,7 +11,7 @@ public class DistanceGridToPNG {
 
   public byte[] convert(final RectangleGrid grid, final Distances distances) {
     double farthestDistance = distances.getDistance(distances.maxDistanceCell());
-    return new GridToPNG() {
+    return new RectangleGridToPNG() {
       @Override
       protected Color backgroundForCell(final RectangleCell cell) {
         double distance = distances.getDistance(cell);

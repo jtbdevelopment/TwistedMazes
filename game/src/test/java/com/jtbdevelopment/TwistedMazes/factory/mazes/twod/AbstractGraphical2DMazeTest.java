@@ -5,7 +5,7 @@ import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.LongestPathCa
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import com.jtbdevelopment.TwistedMazes.util.png.twod.DistanceGridToPNG;
-import com.jtbdevelopment.TwistedMazes.util.png.twod.GridToPNG;
+import com.jtbdevelopment.TwistedMazes.util.png.twod.RectangleGridToPNG;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,7 +21,7 @@ public abstract class AbstractGraphical2DMazeTest {
 
   protected final Logger logger = LoggerFactory.getLogger(getClass());
   protected RectangleGrid grid = new RectangleGrid(20, 20);
-  protected GridToPNG gridToPNG = new GridToPNG();
+  protected RectangleGridToPNG gridToPNG = new RectangleGridToPNG();
   protected DistanceGridToPNG distanceGridToPNG = new DistanceGridToPNG();
   protected DijkstraDistancesCalculator distancesCalculator = new DijkstraDistancesCalculator();
   protected LongestPathCalculator longestPathCalculator = new LongestPathCalculator(

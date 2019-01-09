@@ -14,8 +14,6 @@ public abstract class AbstractGrid<C extends AbstractCell> {
   protected List<List<C>> cells;
   protected int rows;
 
-  protected abstract void initializeGrid(int rows, int cols);
-
   public int size() {
     return cells.stream().mapToInt(List::size).sum();
   }

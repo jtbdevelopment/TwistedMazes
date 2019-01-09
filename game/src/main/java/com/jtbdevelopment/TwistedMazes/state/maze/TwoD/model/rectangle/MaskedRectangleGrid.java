@@ -10,11 +10,6 @@ public class MaskedRectangleGrid extends RectangleGrid {
 
   private final RectangleMask mask;
 
-  public MaskedRectangleGrid(final MaskedRectangleGrid copy) {
-    super(copy);
-    this.mask = copy.mask;
-  }
-
   public MaskedRectangleGrid(final RectangleMask mask) {
     super();
     this.mask = new RectangleMask(mask);
