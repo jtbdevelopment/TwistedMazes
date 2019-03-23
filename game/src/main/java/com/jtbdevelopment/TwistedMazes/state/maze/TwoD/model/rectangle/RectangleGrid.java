@@ -1,6 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.DirectionalGrid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -8,7 +9,7 @@ import java.util.stream.IntStream;
 /**
  * Date: 8/27/18 Time: 9:48 AM
  */
-public class RectangleGrid extends AbstractGrid<RectangleCell> {
+public class RectangleGrid extends AbstractGrid<RectangleCell> implements DirectionalGrid {
 
   private int cols;
 

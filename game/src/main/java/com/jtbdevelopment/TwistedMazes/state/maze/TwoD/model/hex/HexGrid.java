@@ -1,6 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.hex;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.DirectionalGrid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.stream.IntStream;
 /**
  * Date: 1/6/19 Time: 4:15 PM
  */
-public class HexGrid extends AbstractGrid<HexCell> {
+public class HexGrid extends AbstractGrid<HexCell> implements DirectionalGrid {
 
   private int cols;
 
@@ -50,9 +51,7 @@ public class HexGrid extends AbstractGrid<HexCell> {
   private void prepareCells(final int rows, final int cols) {
     IntStream.range(0, rows).forEach(row -> {
       List<HexCell> rowCells = this.cells.get(row);
-      IntStream.range(0, cols).forEach(col -> {
-        rowCells.add(col, new HexCell(row, col));
-      });
+      IntStream.range(0, cols).forEach(col -> rowCells.add(col, new HexCell(row, col, this)));
     });
   }
 

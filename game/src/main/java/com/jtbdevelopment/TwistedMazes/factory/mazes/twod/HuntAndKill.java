@@ -1,7 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Grid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 /**
  * Date: 9/21/18 Time: 6:27 PM
  */
-public class HuntAndKill extends AbstractGenerator2DMaze<AbstractGrid<Cell>> {
+public class HuntAndKill extends AbstractGenerator2DMaze<Grid> {
 
   @Override
-  public void make2DMaze(final AbstractGrid<Cell> grid) {
+  public void make2DMaze(final Grid grid) {
 
     Cell currentCell = grid.getRandomCell();
     while (currentCell != null) {

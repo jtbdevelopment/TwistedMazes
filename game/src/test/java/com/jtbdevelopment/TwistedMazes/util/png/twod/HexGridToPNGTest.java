@@ -1,5 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.util.png.twod;
 
+import com.jtbdevelopment.TwistedMazes.factory.mazes.twod.BinaryTree;
 import com.jtbdevelopment.TwistedMazes.factory.mazes.twod.RecursiveBacktracker;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.hex.HexGrid;
 import java.io.IOException;
@@ -15,9 +16,10 @@ public class HexGridToPNGTest {
 
   private HexGridToPNG hexGridToPNG = new HexGridToPNG();
   private RecursiveBacktracker recursiveBacktracker = new RecursiveBacktracker();
+  private BinaryTree binaryTree = new BinaryTree();
 
   @Test
-  public void testDrawingPolarGrid() throws IOException {
+  public void testDrawingHexGrid() throws IOException {
     HexGrid grid = new HexGrid(8, 8);
 
     Files.write(Paths.get("hexgrid.png"), hexGridToPNG.convert(grid),
@@ -29,4 +31,16 @@ public class HexGridToPNGTest {
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
   }
 
+  @Test
+  public void testDrawingHexGridUsingFakeEast() throws IOException {
+    HexGrid grid = new HexGrid(8, 8);
+
+    Files.write(Paths.get("hexgrid.png"), hexGridToPNG.convert(grid),
+      StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+
+    binaryTree.make2DMaze(grid);
+
+    Files.write(Paths.get("hexgrid-bt.png"), hexGridToPNG.convert(grid),
+      StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+  }
 }
