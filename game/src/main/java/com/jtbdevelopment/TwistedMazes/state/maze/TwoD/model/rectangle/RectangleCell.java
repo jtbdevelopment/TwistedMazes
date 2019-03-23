@@ -1,6 +1,8 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.DirectionalCell;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,49 +11,53 @@ import java.util.stream.Stream;
 /**
  * Date: 8/27/18 Time: 9:38 AM
  */
-public class RectangleCell extends AbstractCell {
+public class RectangleCell extends AbstractCell<DirectionalCell> implements DirectionalCell {
 
-  private RectangleCell north, east, south, west;
+  private DirectionalCell north, east, south, west;
 
   public RectangleCell(int row, int col) {
     super(row, col);
   }
 
   @Override
-  public Set<AbstractCell> getNeighbors() {
+  public Set<Cell> getNeighbors() {
     return Stream.of(north, east, south, west).filter(Objects::nonNull)
         .collect(Collectors.toSet());
   }
 
-  public RectangleCell getNorth() {
+  @Override
+  public DirectionalCell getNorth() {
     return north;
   }
 
-  public void setNorth(RectangleCell north) {
+  public void setNorth(DirectionalCell north) {
     this.north = north;
   }
 
-  public RectangleCell getEast() {
+  @Override
+  public DirectionalCell getEast() {
     return east;
   }
 
-  public void setEast(RectangleCell east) {
+  public void setEast(DirectionalCell east) {
     this.east = east;
   }
 
-  public RectangleCell getSouth() {
+  @Override
+  public DirectionalCell getSouth() {
     return south;
   }
 
-  public void setSouth(RectangleCell south) {
+  public void setSouth(DirectionalCell south) {
     this.south = south;
   }
 
-  public RectangleCell getWest() {
+  @Override
+  public DirectionalCell getWest() {
     return west;
   }
 
-  public void setWest(RectangleCell west) {
+  public void setWest(DirectionalCell west) {
     this.west = west;
   }
 

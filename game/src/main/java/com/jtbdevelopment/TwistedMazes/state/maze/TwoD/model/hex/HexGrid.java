@@ -14,6 +14,7 @@ public class HexGrid extends AbstractGrid<HexCell> {
   private int cols;
 
   public HexGrid(final int rows, final int cols) {
+    initializeGrid(rows, cols);
   }
 
   protected void initializeGrid(final int rows, final int cols) {
@@ -50,7 +51,7 @@ public class HexGrid extends AbstractGrid<HexCell> {
     IntStream.range(0, rows).forEach(row -> {
       List<HexCell> rowCells = this.cells.get(row);
       IntStream.range(0, cols).forEach(col -> {
-        rowCells.set(col, new HexCell(row, col));
+        rowCells.add(col, new HexCell(row, col));
       });
     });
   }

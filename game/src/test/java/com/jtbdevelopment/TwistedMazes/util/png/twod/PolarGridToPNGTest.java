@@ -20,10 +20,12 @@ public class PolarGridToPNGTest {
   public void testDrawingPolarGrid() throws IOException {
     PolarGrid grid = new PolarGrid(8);
 
-    recursiveBacktracker.make2DMaze(grid);
-    polarGridToPNG.convert(grid);
-
     Files.write(Paths.get("polargrid.png"), polarGridToPNG.convert(grid),
+        StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+
+    recursiveBacktracker.make2DMaze(grid);
+
+    Files.write(Paths.get("polargrid-rbt.png"), polarGridToPNG.convert(grid),
         StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
 
   }

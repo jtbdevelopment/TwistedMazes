@@ -1,6 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DijkstraDistancesCalculator {
 
-  public Distances computeDistances(final AbstractCell root) {
+  public Distances computeDistances(final Cell root) {
     Distances distances = new Distances(root);
-    Queue<AbstractCell> frontier = new LinkedList<>();
+    Queue<Cell> frontier = new LinkedList<>();
     frontier.add(root);
     while (!frontier.isEmpty()) {
-      AbstractCell current = frontier.poll();
+      Cell current = frontier.poll();
       int currentDistance = distances.getDistance(current);
       current.getLinkedCells().forEach(linked -> {
         if (!distances.hasCell(linked)) {

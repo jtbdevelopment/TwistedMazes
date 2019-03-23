@@ -53,18 +53,12 @@ public class RectangleGrid extends AbstractGrid<RectangleCell> {
   protected void prepareCells(final int rows, final int cols) {
     IntStream.range(0, rows).forEach(row -> {
       List<RectangleCell> rowCells = this.cells.get(row);
-      IntStream.range(0, cols).forEach(col -> {
-        rowCells.set(col, new RectangleCell(row, col));
-      });
+      IntStream.range(0, cols).forEach(col -> rowCells.add(new RectangleCell(row, col)));
     });
   }
 
   public int getCols() {
     return cols;
-  }
-
-  protected String cellContent(final RectangleCell cell) {
-    return "   ";
   }
 
 }

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 /**
  * Date: 12/3/18 Time: 6:50 PM
  */
-public abstract class AbstractGrid<C extends AbstractCell> {
+public abstract class AbstractGrid<C extends Cell> {
 
   private static final Random random = new Random();
   protected List<List<C>> cells;

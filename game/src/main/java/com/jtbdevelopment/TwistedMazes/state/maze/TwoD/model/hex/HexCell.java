@@ -1,6 +1,8 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.hex;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.DirectionalCell;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,7 +10,7 @@ import java.util.stream.Stream;
 /**
  * Date: 1/6/19 Time: 4:08 PM
  */
-public class HexCell extends AbstractCell {
+public class HexCell extends AbstractCell<DirectionalCell> implements DirectionalCell {
 
   private HexCell north, northeast, northwest, south, southeast, southwest;
 
@@ -17,9 +19,11 @@ public class HexCell extends AbstractCell {
   }
 
   @Override
-  public Set<AbstractCell> getNeighbors() {
-    return Stream.of(north, northeast, southeast, south, southwest, northwest)
-      .collect(Collectors.toSet());
+  public Set<DirectionalCell> getNeighbors() {
+    return
+        Stream.of(north, northeast, southeast, south, southwest, northwest)
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
   }
 
   public HexCell getNorth() {
@@ -68,5 +72,15 @@ public class HexCell extends AbstractCell {
 
   public void setSouthwest(final HexCell southwest) {
     this.southwest = southwest;
+  }
+
+  @Override
+  public DirectionalCell getEast() {
+    return northeast;
+  }
+
+  @Override
+  public DirectionalCell getWest() {
+    return southwest;
   }
 }

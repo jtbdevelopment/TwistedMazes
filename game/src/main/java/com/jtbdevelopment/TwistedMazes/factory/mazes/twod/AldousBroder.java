@@ -2,6 +2,7 @@ package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class AldousBroder extends
     AbstractGenerator2DMaze<AbstractGrid> {
 
   public void make2DMaze(final AbstractGrid grid) {
-    AbstractCell randomCell = grid.getRandomCell();
+    Cell randomCell = grid.getRandomCell();
     int unvisited = grid.size() - 1;
     while (unvisited > 0) {
       List<AbstractCell> neighbors = new ArrayList<>(randomCell.getNeighbors());

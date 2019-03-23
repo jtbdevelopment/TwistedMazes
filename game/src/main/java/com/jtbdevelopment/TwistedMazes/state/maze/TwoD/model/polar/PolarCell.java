@@ -1,6 +1,7 @@
 package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.polar;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Cell;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -10,7 +11,7 @@ import java.util.stream.Stream;
 /**
  * Date: 8/27/18 Time: 9:38 AM
  */
-public class PolarCell extends AbstractCell {
+public class PolarCell extends AbstractCell<Cell> implements Cell {
 
   private PolarCell cw, ccw, inward;
 
@@ -21,8 +22,8 @@ public class PolarCell extends AbstractCell {
   }
 
   @Override
-  public Set<AbstractCell> getNeighbors() {
-    Set<AbstractCell> collected = Stream.of(ccw, cw, inward).filter(Objects::nonNull)
+  public Set<Cell> getNeighbors() {
+    Set<Cell> collected = Stream.of(ccw, cw, inward).filter(Objects::nonNull)
         .collect(Collectors.toSet());
     collected.addAll(outward);
     return collected;

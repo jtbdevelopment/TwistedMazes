@@ -1,6 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
-import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleCell;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.DirectionalCell;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle.RectangleGrid;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +17,7 @@ public class BinaryTree extends AbstractGenerator2DMaze<RectangleGrid> {
   @Override
   public void make2DMaze(final RectangleGrid grid) {
     grid.stream().forEach(cell -> {
-      List<RectangleCell> neighbors = Stream.of(cell.getNorth(), cell.getEast())
+      List<DirectionalCell> neighbors = Stream.of(cell.getNorth(), cell.getEast())
           .filter(Objects::nonNull)
           .collect(Collectors.toList());
       if (neighbors.size() > 0) {

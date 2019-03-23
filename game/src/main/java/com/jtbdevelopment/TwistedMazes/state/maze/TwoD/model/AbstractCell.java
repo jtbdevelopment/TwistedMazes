@@ -9,11 +9,11 @@ import java.util.Set;
  * Date: 12/3/18 Time: 6:36 PM
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractCell {
+public abstract class AbstractCell<C extends Cell> implements Cell {
 
   protected final int row;
   protected final int col;
-  private Set<AbstractCell> linkedCells = new HashSet<>();
+  private Set<Cell> linkedCells = new HashSet<>();
 
   protected AbstractCell(
       int row, int col) {
@@ -21,25 +21,28 @@ public abstract class AbstractCell {
     this.col = col;
   }
 
-  public <C extends AbstractCell> Set<C> getLinkedCells() {
+  @Override
+  public <C extends Cell> Set<C> getLinkedCells() {
     return (Set<C>) Collections.unmodifiableSet(linkedCells);
   }
 
-  public abstract Set<AbstractCell> getNeighbors();
-
-  public boolean isLinked(final AbstractCell cell) {
+  @Override
+  public boolean isLinked(final Cell cell) {
     return cell != null && linkedCells.contains(cell);
   }
 
-  public void linkCell(final AbstractCell cell) {
+  @Override
+  public void linkCell(final Cell cell) {
     linkCell(cell, true);
   }
 
-  public void unlinkCell(final AbstractCell cell) {
+  @Override
+  public void unlinkCell(final Cell cell) {
     unlinkCell(cell, true);
   }
 
-  protected void linkCell(final AbstractCell cell, final boolean bi) {
+  @Override
+  public void linkCell(final Cell cell, final boolean bi) {
     if (cell != null) {
       linkedCells.add(cell);
       if (bi) {
@@ -48,7 +51,8 @@ public abstract class AbstractCell {
     }
   }
 
-  protected void unlinkCell(final AbstractCell cell, final boolean bi) {
+  @Override
+  public void unlinkCell(final Cell cell, final boolean bi) {
     if (cell != null) {
       linkedCells.remove(cell);
       if (bi) {
@@ -57,10 +61,12 @@ public abstract class AbstractCell {
     }
   }
 
+  @Override
   public int getRow() {
     return row;
   }
 
+  @Override
   public int getCol() {
     return col;
   }
