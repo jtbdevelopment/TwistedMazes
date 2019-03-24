@@ -8,8 +8,7 @@ import java.util.List;
 /**
  * Date: 9/20/18 Time: 7:49 PM
  */
-public class AldousBroder extends
-    AbstractGenerator2DMaze<Grid> {
+public class AldousBroder extends AbstractGenerator2DMaze<Grid> {
 
   public void make2DMaze(final Grid grid) {
     Cell randomCell = grid.getRandomCell();

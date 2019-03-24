@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Date: 8/27/18 Time: 10:26 AM
+ *
+ * Doesn't work well with triangles
  */
 @Component
 public class BinaryTree extends AbstractGenerator2DMaze<DirectionalGrid> {

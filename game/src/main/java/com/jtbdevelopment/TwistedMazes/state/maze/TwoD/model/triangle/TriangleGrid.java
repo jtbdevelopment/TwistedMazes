@@ -1,4 +1,4 @@
-package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.rectangle;
+package com.jtbdevelopment.TwistedMazes.state.maze.twod.model.triangle;
 
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.AbstractGrid;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.DirectionalGrid;
@@ -7,17 +7,13 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * Date: 8/27/18 Time: 9:48 AM
+ * Date: 3/24/19 Time: 10:22 AM
  */
-public class RectangleGrid extends AbstractGrid<RectangleCell> implements DirectionalGrid {
+public class TriangleGrid extends AbstractGrid<TriangleCell> implements DirectionalGrid {
 
   private int cols;
 
-  RectangleGrid() {
-
-  }
-
-  public RectangleGrid(final int rows, final int cols) {
+  public TriangleGrid(int rows, int cols) {
     initializeGrid(rows, cols);
   }
 
@@ -32,28 +28,30 @@ public class RectangleGrid extends AbstractGrid<RectangleCell> implements Direct
 
   private void assignNeighbors(final int rows, final int cols) {
     IntStream.range(0, rows).forEach(row -> {
-      List<RectangleCell> rowCells = this.cells.get(row);
+      List<TriangleCell> rowCells = this.cells.get(row);
       IntStream.range(0, cols).forEach(col -> {
-        RectangleCell cell = rowCells.get(col);
+        TriangleCell cell = rowCells.get(col);
         if (cell != null) {
-          cell.setNorth(getCell(row - 1, col));
-          cell.setSouth(getCell(row + 1, col));
           cell.setWest(getCell(row, col - 1));
           cell.setEast(getCell(row, col + 1));
+          if (cell.isUpright()) {
+            cell.setSouth(getCell(row + 1, col));
+          } else {
+            cell.setNorth(getCell(row - 1, col));
+          }
         }
       });
     });
   }
 
-  protected void prepareCells(final int rows, final int cols) {
+  private void prepareCells(final int rows, final int cols) {
     IntStream.range(0, rows).forEach(row -> {
-      List<RectangleCell> rowCells = this.cells.get(row);
-      IntStream.range(0, cols).forEach(col -> rowCells.add(new RectangleCell(row, col)));
+      List<TriangleCell> rowCells = this.cells.get(row);
+      IntStream.range(0, cols).forEach(col -> rowCells.add(new TriangleCell(row, col)));
     });
   }
 
   public int getCols() {
     return cols;
   }
-
 }

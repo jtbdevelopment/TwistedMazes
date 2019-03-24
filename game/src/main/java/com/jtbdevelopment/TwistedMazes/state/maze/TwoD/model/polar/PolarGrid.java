@@ -21,10 +21,10 @@ public class PolarGrid extends AbstractGrid<PolarCell> {
   }
 
   public PolarGrid(final int rows) {
-    initializeGrid(rows, 1);
+    initializeGrid(rows);
   }
 
-  private void initializeGrid(final int rows, final int cols) {
+  private void initializeGrid(final int rows) {
     this.rows = rows;
     cells = new ArrayList<>(rows);
 
