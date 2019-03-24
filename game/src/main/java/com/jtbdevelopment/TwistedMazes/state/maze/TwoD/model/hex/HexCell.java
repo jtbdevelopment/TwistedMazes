@@ -13,9 +13,11 @@ import java.util.stream.Stream;
 public class HexCell extends AbstractCell<DirectionalCell> implements DirectionalCell {
 
   private HexCell north, northeast, northwest, south, southeast, southwest;
+  private HexGrid grid;
 
-  public HexCell(final int row, final int col) {
+  public HexCell(final int row, final int col, final HexGrid grid) {
     super(row, col);
+    this.grid = grid;
   }
 
   @Override
@@ -76,11 +78,11 @@ public class HexCell extends AbstractCell<DirectionalCell> implements Directiona
 
   @Override
   public DirectionalCell getEast() {
-    return northeast;
+    return grid.getCell(row, col + 1);
   }
 
   @Override
   public DirectionalCell getWest() {
-    return southwest;
+    return grid.getCell(row, col - 1);
   }
 }
