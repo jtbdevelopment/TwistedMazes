@@ -2,6 +2,7 @@ package com.jtbdevelopment.TwistedMazes.util.png.twod;
 
 import com.jtbdevelopment.TwistedMazes.factory.mazes.twod.BinaryTree;
 import com.jtbdevelopment.TwistedMazes.factory.mazes.twod.RecursiveBacktracker;
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.MazeBraider;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.hex.HexGrid;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +18,7 @@ public class HexGridToPNGTest {
   private HexGridToPNG hexGridToPNG = new HexGridToPNG();
   private RecursiveBacktracker recursiveBacktracker = new RecursiveBacktracker();
   private BinaryTree binaryTree = new BinaryTree();
+  private MazeBraider mazeBraider = new MazeBraider();
 
   @Test
   public void testDrawingHexGrid() throws IOException {
@@ -28,6 +30,10 @@ public class HexGridToPNGTest {
     recursiveBacktracker.make2DMaze(grid);
 
     Files.write(Paths.get("hexgrid-rbt.png"), hexGridToPNG.convert(grid),
+      StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+
+    mazeBraider.braidMaze(grid, 0.75);
+    Files.write(Paths.get("hexgrid-rbt-braid.png"), hexGridToPNG.convert(grid),
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
   }
 
@@ -41,6 +47,10 @@ public class HexGridToPNGTest {
     binaryTree.make2DMaze(grid);
 
     Files.write(Paths.get("hexgrid-bt.png"), hexGridToPNG.convert(grid),
+      StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+
+    mazeBraider.braidMaze(grid, 0.75);
+    Files.write(Paths.get("hexgrid-bt-braid.png"), hexGridToPNG.convert(grid),
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
   }
 }

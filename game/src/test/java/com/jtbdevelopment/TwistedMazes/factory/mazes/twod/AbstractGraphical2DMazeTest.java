@@ -1,5 +1,6 @@
 package com.jtbdevelopment.TwistedMazes.factory.mazes.twod;
 
+import com.jtbdevelopment.TwistedMazes.state.maze.twod.MazeBraider;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.DijkstraDistancesCalculator;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.calculators.LongestPathCalculator;
 import com.jtbdevelopment.TwistedMazes.state.maze.twod.model.Distances;
@@ -26,6 +27,7 @@ public abstract class AbstractGraphical2DMazeTest {
   protected DijkstraDistancesCalculator distancesCalculator = new DijkstraDistancesCalculator();
   protected LongestPathCalculator longestPathCalculator = new LongestPathCalculator(
     distancesCalculator);
+  protected MazeBraider mazeBraider = new MazeBraider();
 
 
   protected abstract String getFileName();
@@ -47,6 +49,10 @@ public abstract class AbstractGraphical2DMazeTest {
 
     Distances distances = longestPathCalculator.calcLongestPath(grid);
     Files.write(Paths.get(rootName + "heatmap.png"), distanceGridToPNG.convert(grid, distances),
+      StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+
+    mazeBraider.braidMaze(grid, 0.75);
+    Files.write(Paths.get(rootName + "-braided.png"), gridToPNG.convert(grid),
       StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
   }
 }
